@@ -89,10 +89,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-            SET.putString("cityName",text)
-            SET.apply()
-            viewModel.refreshData(text)
-            getLiveData()
+
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
             ) {
@@ -104,6 +101,10 @@ class MainActivity : AppCompatActivity() {
             } else {
                 konumDinleyicisi?.let {
                     konumYoneticisi?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, it)
+                    SET.putString("cityName",text)
+                    SET.apply()
+                    viewModel.refreshData(text)
+                    getLiveData()
                 }
             }
 
